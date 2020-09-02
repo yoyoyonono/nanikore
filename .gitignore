@@ -1,0 +1,8 @@
+#api key
+apikey
+
+#sql database
+sm_app.sqlite
+
+#gifs
+giftemp/

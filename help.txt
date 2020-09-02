@@ -1,0 +1,7 @@
+Commands:
+ - help: displays this list of commands
+ - say: repeats the message you sent it, use -hide in front to hide your message
+ go:
+   - slap [USER]: sends gif of you slapping user
+ test:
+   - ping: bot replies pong
