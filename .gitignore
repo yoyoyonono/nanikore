@@ -6,3 +6,6 @@ sm_app.sqlite
 
 #gifs
 giftemp/
+
+#vscode stuff
+.vscode/
