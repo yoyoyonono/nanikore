@@ -1,37 +1,10 @@
 import discord
 from random import randint
 import sqlite3
+from sqlhelperstuff import *
 
 ########################################
 #All the SQL setup stuff goes here
-def create_connection(path):
-    connection = None
-    try:
-        connection = sqlite3.connect(path)
-        print("Connection to SQLite DB successful")
-    except sqlite3.Error as e:
-        print(f"The error '{e}' occurred")
-    return connection
-
-def execute_query(connection,query):
-    cursor = connection.cursor()
-    try:
-        cursor.execute(query)
-        connection.commit()
-        print('Query executed succesfully')
-    except sqlite3.Error as e:
-        print(f'The error "{e}" occured"')
-
-def execute_read_query(connection, query):
-    cursor = connection.cursor()
-    result = None
-    try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        return result
-    except sqlite3.Error as e:
-        print(f'The error "{e}" occurred')
-
 connection = create_connection('./sm_app.sqlite')
 
 execute_query(connection, """
@@ -70,6 +43,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    await client.change_presence(activity=discord.Game('.nkr'))
 
 @client.event
 async def on_message(message):
@@ -77,8 +51,9 @@ async def on_message(message):
         return
 
     msg = str(message.content)
-
-    if msg.startswith('.nkr'):#command handling code
+    
+    #command handling code
+    if msg.startswith('.nkr'):
         msg = msg[5:]
 
         if msg == 'help':
