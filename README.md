@@ -1,0 +1,2 @@
+# nanikore
+the discord bot
